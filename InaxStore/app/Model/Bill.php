@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bill extends Model
+class Bill extends Model implements Searchable
 {
     public function billdetails()
     {
@@ -23,6 +25,17 @@ class Bill extends Model
     public function provider()
     {
         return $this->belongsTo('App\Model\Provider');
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('showbill', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->id,
+            $url
+        );
     }
 
     protected $fillable= [

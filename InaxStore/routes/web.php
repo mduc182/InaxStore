@@ -55,6 +55,14 @@ Route::get('/admin/addbill', 'BillController@create')->name('createbill');
 Route::post('/admin/bill', 'BillController@store')->name('storebill');
 Route::get('/collect', 'CollectController@index')->name('collect');
 
+Route::get('search', 'SearchController@index')->name('search.index');
+Route::get('search-results', 'SearchController@search')->name('search.result');
+Route::get('searchu', 'SearchController@indexu')->name('searchu.index');
+Route::get('searchu-results', 'SearchController@searchu')->name('searchu.result');
+Route::get('searchb', 'SearchController@indexb')->name('searchb.index');
+Route::get('searchb-results', 'SearchController@searchb')->name('searchb.result');
 
+Route::get('/showuser{id}', 'UserController@show')->name('showuser');
+Route::get('/showbill{id}', 'BillController@show')->name('showbill');
 
 

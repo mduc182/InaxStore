@@ -82,7 +82,10 @@ class BillController extends Controller
      */
     public function show($id)
     {
-        //
+        $bills = Bill::with([('user'),('product'), ('provider')])->findOrfail($id);
+        
+
+        return view('showbill', compact('bills'));
     }
 
     /**

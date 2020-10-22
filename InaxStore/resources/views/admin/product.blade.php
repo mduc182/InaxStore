@@ -44,6 +44,7 @@
                         <h1 class="txt-blue" style="font-size: 25px; color:blue"><b>Quản Lý Sản Phẩm</b></h1>
                         <br>
                         <a class="btn btn-success" href="{!! Route('createproduct') !!}">Thêm Loại Sản Phẩm Mới</a>
+                        <a class="btn btn-secondary" href="{!! Route('search.index') !!}">Tìm Kiếm Sản Phẩm</a>
                         <br>
                         <div class="cuocthi-block">
                             <table>

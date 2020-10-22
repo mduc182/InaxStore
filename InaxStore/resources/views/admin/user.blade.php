@@ -44,6 +44,7 @@
                         <h1 class="txt-blue" style="font-size: 25px; color:blue"><b>Quản Lý Người Dùng</b></h1>
                         <br>
                         <a class="btn btn-success" href="{!! Route('createuser') !!}">Thêm Nhân Viên Mới</a>
+                        <a class="btn btn-secondary" href="{!! Route('searchu.index') !!}">Tìm Kiếm Nhân Viên</a>
     
                         <br>
                         <div class="cuocthi-block">
@@ -68,6 +69,7 @@
                                     <td class="styletb">{!! $user->birth !!}</td>
                                     <td class="styletb">{!! $user->role !!}</td>
                                     <td><a class="btn btn-info" href="{!! Route('edituser', $user->id) !!}">Sửa</a></td>
+                                    <td><a class="btn btn-secondary" href="{!! Route('showuser', $user->id) !!}">Xem</a></td>
                                     <td>
                                     <form action="{!! Route('deleteuser', $user->id ) !!}" method="post">
                                     <input type="hidden" value="{!! $user->id !!}" name="id">
