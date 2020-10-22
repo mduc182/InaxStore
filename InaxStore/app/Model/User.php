@@ -2,12 +2,13 @@
 
 namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Searchable
 {
     use Notifiable;
 
@@ -46,6 +47,18 @@ class User extends Authenticatable
     public function bills()
     {
         return $this->hasmany('App\Model\Bill');
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('showuser', $this->id);
+        return new SearchResult(
+            $this,
+            $this->name,
+            $url
+
+            
+        );
     }
 }
 

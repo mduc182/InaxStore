@@ -44,6 +44,7 @@
                         <h1 class="txt-blue" style="font-size: 25px; color:blue"><b>Quản Lý Đơn Nhập Hàng</b></h1>
                         <br>
                         <a class="btn btn-success" href="{{ route('createbill') }}">Thêm Đơn Nhập Hàng Mới</a>
+                        <a class="btn btn-secondary" href="{{ route('searchb.index') }}">Tìm Đơn Nhập Hàng </a>
     
                         <br>
                         <div class="cuocthi-block">
