@@ -61,15 +61,20 @@
                                     <td class="styletb">{!! $provider->providername !!}</td>
                                     <td><a class="btn btn-info" href="{!! Route('editprovider', $provider->id) !!}">Sửa</a></td>
                                     <td>
-                                    <form action="{!! Route('deleteprovider', $provider->id ) !!}" method="post">
+                                    <form class="delete" action="{!! Route('deleteprovider', $provider->id ) !!}" method="post">
                                     <input type="hidden" value="{!! $provider->id !!}" name="id">
                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                      <input type="submit" value="Xóa" class="btn btn-danger">
                                     </form></td>
                                     </td>
                                   </tr>
+                                  
                                   @endforeach
-                                 
+                                  <script>
+                                    $(".delete").on("submit", function(){
+                                     return confirm("Are you sure?");
+                                     });
+                                    </script>
                                   
                             </table>
                                 

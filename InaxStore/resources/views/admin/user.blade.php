@@ -116,7 +116,7 @@
                                     <td><a class="btn btn-info" href="{!! Route('edituser', $user->id) !!}">Sửa</a></td>
                                     <td><a class="btn btn-secondary" href="{!! Route('showuser', $user->id) !!}">Xem</a></td>
                                     <td>
-                                    <form action="{!! Route('deleteuser', $user->id ) !!}" method="post">
+                                    <form class="delete" action="{!! Route('deleteuser', $user->id ) !!}" method="post">
                                     <input type="hidden" value="{!! $user->id !!}" name="id">
                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                      <input type="submit" value="Xóa" class="btn btn-danger">
@@ -125,7 +125,11 @@
 
                                   </tr>
                                   @endforeach
-                                 
+                                  <script>
+                                    $(".delete").on("submit", function(){
+                                     return confirm("Are you sure?");
+                                     });
+                                    </script>
                                   
                             </table>
                             <br>

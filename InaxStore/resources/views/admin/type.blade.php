@@ -60,14 +60,18 @@
                                     <td class="styletb">{!! $type->typename !!}</td>
                                     <td><a class="btn btn-info" href="{!! Route('edittype', $type->id) !!}">Sửa</a></td>
                                     <td>
-                                    <form action="{!! Route('deletetype', $type->id ) !!}" method="post">
+                                    <form class="delete" action="{!! Route('deletetype', $type->id ) !!}" method="post">
                                     <input type="hidden" value="{!! $type->id !!}" name="id">
                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                      <input type="submit" value="Xóa" class="btn btn-danger">
                                     </form></td>
                                   </tr>
                                   @endforeach
-                                 
+                                  <script>
+                                    $(".delete").on("submit", function(){
+                                     return confirm("Are you sure?");
+                                     });
+                                    </script>
                                   
                             </table>
                             
