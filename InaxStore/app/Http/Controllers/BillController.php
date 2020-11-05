@@ -62,7 +62,6 @@ class BillController extends Controller
         $bills->product_id = $request->get('product_id');
         $bills->user_id = $request->get('user_id');
         $bills->provider_id = $request->get('provider_id');
-        $bills->amount = $request->get('amount');
         $bills->total = $request->get('total');
         $mess= "";
         if($bills->save())

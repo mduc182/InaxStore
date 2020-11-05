@@ -28,11 +28,6 @@
                 @endforeach
                 </select>
                 <br>
-                <label>Số Lượng : </label>
-                <br>
-                <br>
-                <input  type="text" name="amount" class="form-control">
-                <br>
                 <br>
                 <label>Tổng Tiền : </label>
                 <br>

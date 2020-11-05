@@ -15,11 +15,11 @@
                             !!}</a></h3>
                             <br>
                             <br>
-                    <h5>Sản Phẩm :{!!  $bills->product->productname !!}</h5>
+                    <h5>Sản Phẩm :{!!  $bills->product->productname ?? '' !!}</h5>
                     <br>
                     <br>
 
-                    <h6>Số Lượng :{!!  $bills->amount !!}</h6>
+                    <h6>Số Lượng :{!!  $bills->amount ?? '' !!}</h6>
                     <br>
                     <br>
 
@@ -27,11 +27,11 @@
                     <br>
                     <br>
 
-                    <h6>Nhà cung cấp :{!!  $bills->provider->providername !!}</h6>
+                    <h6>Nhà cung cấp :{!!  $bills->provider->providername ?? '' !!}</h6>
                     <br>
                     <br>
 
-                    <h6>Người Nhập :{!! $bills->user->name !!}</h6>
+                    <h6>Người Nhập :{!! $bills->user->name ?? '' !!}</h6>
 
                 </div>
             </div>

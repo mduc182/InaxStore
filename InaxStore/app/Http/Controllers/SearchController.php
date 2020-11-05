@@ -52,7 +52,7 @@ class SearchController extends Controller
         $searchbterm = $request->input('query');
 
         $searchbResults = (new Search())
-            ->registerModel(\App\Model\Bill::class, ['product_id', 'amount', 'total', 'created_at'])
+            ->registerModel(\App\Model\Bill::class, ['product_id', 'total', 'created_at'])
             ->perform($searchbterm);
 
         return view('searchb', compact('searchbResults', 'searchbterm'));

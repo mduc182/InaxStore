@@ -22,7 +22,51 @@
             @endforeach
         @endif
 <br>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <form method="get" action="{{ route('search.result') }}" class="form-inline mr-auto">
+                <input type="text" name="query" value="{{ isset($searchterm) ? $searchterm : ''  }}"
+                    class="form-control col-sm-8" placeholder="Nhập Nội Dung Cần Tìm Kiếm" aria-label="Search">
+                <button style="margin-left:20px;" class="btn btn-success" type="submit">Tìm Kiếm</button>
+            </form>
+            <br>
+            @if(isset($searchResults))
+            @if ($searchResults-> isEmpty())
+            <h2>Sorry, no results found for the term <b>"{{ $searchterm }}"</b>.</h2>
+            @else
+            <h2>Có {{ $searchResults->count() }} kết quả cho tìm kiếm <b>"{{ $searchterm }}"</b></h2>
+            <hr />
+            @foreach($searchResults->groupByType() as $type => $modelSearchResults)
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Bảng</th>
+                        <th scope="col">{{ $type }}</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($modelSearchResults as $searchResult)
+                    <tr>
+                        <th scope="row">#</th>
+                        <th><a href="{{ $searchResult->url }}">{{ $searchResult->title }}</a></th>
+                        <th><a href="{{ $searchResult->url }}">Xem Chi Tiết</a></th>
+                        
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            
+             
+            @endforeach
+            @endif
+            @endif
+        </div>
+    </div>
+</div>
         <div class="container mgtcourse">
             <div class="">
                 <div class="row">
@@ -39,21 +83,22 @@
                           
                         </ul>
                     </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-8">
+                   
+                    <div class="col-md-9">
                         <h1 class="txt-blue" style="font-size: 25px; color:blue"><b>Quản Lý Sản Phẩm</b></h1>
                         <br>
                         <a class="btn btn-success" href="{!! Route('createproduct') !!}">Thêm Loại Sản Phẩm Mới</a>
-                        <a class="btn btn-secondary" href="{!! Route('search.index') !!}">Tìm Kiếm Sản Phẩm</a>
                         <br>
                         <div class="cuocthi-block">
                             <table>
                                   <tr>
                                     <th class="styletb">Mã Sản Phẩm</th>
                                     <th class="styletb">Tên Sản Phẩm</th>
+                                    <th class="styletb">Chi Tiết</th>
                                     <th class="styletb">Giá Bán</th>
                                     <th class="styletb">Số Lượng</th>
                                     <th class="styletb">Loại</th>
+                                    <th class="styletb">Ảnh</th>
 
 
                                   </tr>
@@ -61,9 +106,13 @@
                                   <tr>
                                     <td class="styletb">{!! $product->id !!}</td>
                                     <td class="styletb">{!! $product->productname !!}</td>
+                                    <td class="styletb">{!! $product->detail !!}</td>
                                     <td class="styletb">{!! $product->price !!}</td>
                                     <td class="styletb">{!! $product->amount !!}</td>
-                                    <td class="styletb">{!! $product->type_id !!}</td>
+                                    <td class="styletb">{!! $product->type_id ?? '' !!}</td>
+                                    <td class="styletb"><img style="width:50px; height:50px" src="/images/{!! $product->image !!}" alt=""> </td>
+                                    <td><a class="btn btn-outline-primary " href="{{ Route('showproduct', $product->id) }}">Xem</td>
+
                                     <td><a class="btn btn-info" href="{{ Route('editproduct', $product->id) }}">Sửa</td>
                                     <td>
                                     <form action="{!! Route('deleteproduct', $product->id ) !!}" method="post">
@@ -74,10 +123,12 @@
 
 
                                   </tr>
+                                  
                                   @endforeach
                                  
                                   
                             </table>
+                            
                             <br>
                          
                         </div>
