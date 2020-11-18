@@ -15,9 +15,9 @@ class CreateBilldetailsTable extends Migration
     {
         Schema::create('billdetails', function (Blueprint $table) {
             $table->id();
-            $table->string('users_id');
-            $table->string('provider_id');
-            $table->string('bill_id');
+            $table->string('users_id')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->string('bill_id')->nullable();
             $table->timestamps();
         });
     }

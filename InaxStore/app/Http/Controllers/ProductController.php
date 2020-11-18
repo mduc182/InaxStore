@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(8);
+        $products = Product::all()->sortByDesc('id');
         return view('admin.product', compact('products'));
     }
 
@@ -50,7 +50,6 @@ class ProductController extends Controller
         $products->productname = $request->get('productname');
         $products->detail = $request->get('detail');
         $products->price = $request->get('price');
-        $products->amount = $request->get('amount');
         $products->image = $request->get('image');
         $products->type_id = $request->get('type_id');
         request()->validate([
@@ -115,7 +114,6 @@ class ProductController extends Controller
         $products->productname = $request->get('productname');
         $products->detail = $request->get('detail');
         $products->price = $request->get('price');
-        $products->amount = $request->get('amount');
         $products->type_id = $request->get('type_id');
         
         if($products->save())

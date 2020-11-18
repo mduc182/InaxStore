@@ -28,7 +28,7 @@ class BillController extends Controller
      */
     public function index()
     {
-        $bills = Bill::with([('user'),('product'), ('provider')])->get();
+        $bills = Bill::with([('user'),('product'), ('provider')])->get()->sortByDesc('id');
 
         return view('admin.bill', compact('bills'));
     }
@@ -58,19 +58,20 @@ class BillController extends Controller
     {
         $users = $this->users;
         $providers = $this->providers;
+
         $bills = new Bill();
         $bills->product_id = $request->get('product_id');
         $bills->user_id = $request->get('user_id');
         $bills->provider_id = $request->get('provider_id');
-        $bills->total = $request->get('total');
-        $mess= "";
-        if($bills->save())
-        {
-            $mess = "Thêm Thành Công";
-        }
-        $bills = Bill::all();
+        $bills->quantity = $request->get('quantity');
+        $bills->budget = $request->get('budget');
+        $bills->amount = $request->get('amount');
+        
+        $bills->save();
+        
+        
 
-        return view('admin.bill', compact('bills', 'users', 'providers'))->with('mess', $mess);
+        return redirect()->route('showbill', $bills->id);
     }
 
     /**
@@ -95,9 +96,14 @@ class BillController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+       
+        $bills = Bill::findOrfail($id);
+        $providers = $this->providers;
+        $products = $this->products;
+        
 
+        return view('editbill',compact('bills, products, providers'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -107,7 +113,22 @@ class BillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $providers = $this->providers;
+        $products = $this->products;
+        
+        $bills = Bill::findOrfail($id);
+
+        $bills->id = $request->get('id');
+        $bills->quantity = $request->get('quantity');
+        $bills->budget = $request->get('budget');
+        $bills->amount = $request->get('aomunt');
+        $bills->product_id = $request->get('product_id');
+        $bills->provider_id = $request->get('provider_id');
+        
+        $bills->save();
+        
+
+        return redirect()->route('showbill', $bills->id);
     }
 
     /**

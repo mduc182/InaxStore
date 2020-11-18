@@ -1,45 +1,90 @@
-@extends('layouts.app')
+@extends('layouts.billlayout')
 
 @section('content')
 <div class="container">
 <form action="{!! Route('storebill') !!}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <div class="col-md-6">
+            <div class="row">
                 <label>Người Nhập Đơn : </label>
-                <select class="form-control" id="user_id" name="user_id">
-                @foreach ( $users as $user)
-                <option value="{!! $user->id !!}">{!! $user->name !!}</option>  
-                @endforeach
+
+               
+                <select class="form-control" id="product_id" name="user_id">
+                <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>
                 </select>
                 <br>
+                
+                <br>
+                <br>
+                <br>
 
-                <label>Sản Phẩm : </label>
-                <select class="form-control" id="product_id" name="product_id">
+                <div class="panel panel-footer" >
+                 <table class="table table-bordered">
+                     <thead>
+                         <tr>
+                             <th>Tên Sản Phẩm</th>
+                             <th>Nhà Cung Cấp</th>
+                             <th>Số Lượng</th>
+                             <th>Đơn Giá</th>
+                             <th>Thành Tiền</th>
+                             <th><a href="#" class="addRow"><i class="glyphicon glyphicon-plus"></i></a></th>
+                         </tr>
+                     </thead>
+                     <tbody>
+         <tr>
+         <td><select class="form-control" id="product_id" name="product_id">
                 @foreach ( $products as $product)
                 <option value="{{ $product->id }}">{{ $product->productname }}</option>  
                 @endforeach
-                </select>
-                <br>
-
-                <label>Nhà Cung Cấp : </label>
-                <select class="form-control" id="provider_id" name="provider_id">
+                </select></td>
+         <td> <select class="form-control" id="provider_id" name="provider_id" >
                 @foreach ( $providers as $provider)
                 <option value="{{ $provider->id }}">{{ $provider->providername }}</option>  
                 @endforeach
-                </select>
-                <br>
-                <br>
-                <label>Tổng Tiền : </label>
-                <br>
-                <br>
-                <input  type="text" name="total" class="form-control">
-                <br>
-                <br>
+                </select></td>   
+           <td><input type="text" name="quantity" class="form-control quantity" required=""></td>
+           <td><input type="text" name="budget" class="form-control budget"></td>
+           <td><input type="text" name="amount" class="form-control amount"></td>
+         <td><a href="#" class="btn btn-danger remove"><i class="glyphicon glyphicon-remove"></i></a></td>
+         </tr>
+                         </tr>
+                     </tbody>
+                     <tfoot>
+                         <tr>
+                             <td style="border: none"></td>
+                             <td style="border: none"></td>
+                             <td style="border: none"></td>
+                             <td>Tổng Tiền</td>
+                             <td><b class="total" name="total"></b> </td>
+                             <td><input type="submit" name="" value="Thêm Mới" class="btn btn-success"></td>
+                         </tr>
+                     </tfoot>
+                 </table>
+             </div>
                 
-                <input class="btn btn-success" value="Thêm Mới" type="submit" name="btn-add">
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+    $('tbody').delegate('.quantity,.budget','keyup',function(){
+        var tr=$(this).parent().parent();
+        var quantity=tr.find('.quantity').val();
+        var budget=tr.find('.budget').val();
+        var amount=(quantity*budget);
+        tr.find('.amount').val(amount);
+        total();
+    });
+    function total(){
+        var total=0;
+        $('.amount').each(function(i,e){
+            var amount=$(this).val()-0;
+        total +=amount;
+    });
+    $('.total').html(total+".000 VNĐ");   
+    }
+    $('.addRow').on('click',function(){
+        addRow();
+    });
+    </script>
 
 </div>
 @endsection

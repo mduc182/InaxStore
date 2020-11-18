@@ -72,7 +72,7 @@
                                   @endforeach
                                   <script>
                                     $(".delete").on("submit", function(){
-                                     return confirm("Are you sure?");
+                                     return confirm("Bạn Có Chắc Chắn Muốn Xóa ?");
                                      });
                                     </script>
                                   
