@@ -21,7 +21,7 @@
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">Mã Hóa Đơn</th>
-                        <th scope="col">Thao Tác</th>
+                        <th scope="col">Thao Tácxa</th>
                         
                     </tr>
                 </thead>

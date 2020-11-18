@@ -87,7 +87,7 @@
                     <div class="col-md-9">
                         <h1 class="txt-blue" style="font-size: 25px; color:blue"><b>Quản Lý Sản Phẩm</b></h1>
                         <br>
-                        <a class="btn btn-success" href="{!! Route('createproduct') !!}">Thêm Loại Sản Phẩm Mới</a>
+                        <a class="btn btn-success" href="{!! Route('createproduct') !!}">Thêm Sản Phẩm Mới</a>
                         <br>
                         <div class="cuocthi-block">
                             <table>
@@ -96,7 +96,6 @@
                                     <th class="styletb">Tên Sản Phẩm</th>
                                     <th class="styletb">Chi Tiết</th>
                                     <th class="styletb">Giá Bán</th>
-                                    <th class="styletb">Số Lượng</th>
                                     <th class="styletb">Loại</th>
                                     <th class="styletb">Ảnh</th>
 
@@ -108,7 +107,6 @@
                                     <td class="styletb">{!! $product->productname !!}</td>
                                     <td class="styletb">{!! $product->detail !!}</td>
                                     <td class="styletb">{!! $product->price !!}</td>
-                                    <td class="styletb">{!! $product->amount !!}</td>
                                     <td class="styletb">{!! $product->type_id ?? '' !!}</td>
                                     <td class="styletb"><img style="width:50px; height:50px" src="/images/{!! $product->image !!}" alt=""> </td>
                                     <td><a class="btn btn-outline-primary " href="{{ Route('showproduct', $product->id) }}">Xem</td>
@@ -127,7 +125,7 @@
                                   @endforeach
                                   <script>
                                     $(".delete").on("submit", function(){
-                                     return confirm("Are you sure?");
+                                     return confirm("Bạn Có Chắc Chắn Muốn Xóa ?");
                                      });
                                     </script>
                                   

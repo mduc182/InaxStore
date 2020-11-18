@@ -24,8 +24,6 @@
                 <label>Giá Bán</label>
                 <input type="text" name="price" value="{!! $products->price !!}" class="form-control">
                 <br>
-                <label>Số Lượng</label>
-                <input type="text" name="amount" value="{!! $products->amount !!}" class="form-control">
                 <br>
                 <label>Loại Sản Phẩm</label>
                 <select class="form-control" id="type_id" name="type_id">
