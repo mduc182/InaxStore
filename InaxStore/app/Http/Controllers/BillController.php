@@ -97,12 +97,9 @@ class BillController extends Controller
     public function edit($id)
     {
        
-        $bills = Bill::findOrfail($id);
-        $providers = $this->providers;
-        $products = $this->products;
-        
+        $bills = Bill::with([('user'),('product'), ('provider')])->findOrfail($id);
 
-        return view('editbill',compact('bills, products, providers'));
+        return view('editbill',compact('bills'));
     }
     /**
      * Update the specified resource in storage.
@@ -113,19 +110,18 @@ class BillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $providers = $this->providers;
-        $products = $this->products;
         
-        $bills = Bill::findOrfail($id);
+        $bills = Bill::with([('user'),('product'), ('provider')])->findOrfail($id);
 
-        $bills->id = $request->get('id');
         $bills->quantity = $request->get('quantity');
         $bills->budget = $request->get('budget');
-        $bills->amount = $request->get('aomunt');
+        $bills->amount = $request->get('amount');
         $bills->product_id = $request->get('product_id');
         $bills->provider_id = $request->get('provider_id');
         
+        
         $bills->save();
+        
         
 
         return redirect()->route('showbill', $bills->id);

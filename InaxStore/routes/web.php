@@ -67,4 +67,18 @@ Route::get('searchb-results', 'SearchController@searchb')->name('searchb.result'
 Route::get('/showuser{id}', 'UserController@show')->name('showuser');
 Route::get('/showbill{id}', 'BillController@show')->name('showbill');
 
+Route::get('/report', 'ReportController@index')->name('report');
+Route::get('/reportuser', 'ReportController@ureport')->name('ureport');
+Route::get('/reportuser1', 'ReportController@u1report')->name('u1report');
+Route::get('/reportuser2', 'ReportController@u2report')->name('u2report');
+Route::get('/reportuser3', 'ReportController@u3report')->name('u3report');
+Route::get('/reportproduct', 'ReportController@preport')->name('preport');
+Route::get('/reportproduct1', 'ReportController@p1report')->name('p1report');
+Route::get('/reportproduct2', 'ReportController@p2report')->name('p2report');
+Route::get('/reportproduct3', 'ReportController@p3report')->name('p3report');
+Route::get('/reportbill', 'ReportController@breport')->name('breport');
+Route::get('/reportbill1', 'ReportController@b1report')->name('b1report');
+Route::get('/reportbill2', 'ReportController@b2report')->name('b2report');
+
+
 

@@ -66,7 +66,7 @@ class ProductController extends Controller
         {
             $mess = " Thêm Thành Công";
         }
-        $products = Product::all();
+        $products = Product::all()->sortByDesc('id');
 
         return view('admin.product', compact('products'))->with('mess', $mess);
 
