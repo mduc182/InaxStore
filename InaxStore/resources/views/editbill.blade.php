@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-<form action="{!! Route('updatebill',$bills->id) !!}" method="post">
+<form action="{{ Route('updatebill', $bills->id) }}" method="post">
             {{ csrf_field() }}
             <div class="row">
 
@@ -23,18 +23,14 @@
          <tr>
          <td>
          <select class="form-control" id="product_id" name="product_id">
-                @foreach ( $products as $product)
-                <option value="{{ $product->id }}">{{ $product->productname }}</option>  
-                @endforeach
+                <option value="{{ $bills->product->id }}">{{ $bills->product->productname }}</option>  
                 </select></td>
          <td> <select class="form-control" id="provider_id" name="provider_id" >
-                @foreach ( $providers as $provider)
-                <option value="{{ $provider->id }}">{{ $provider->providername }}</option>  
-                @endforeach
+                <option value="{{ $bills->provider->id }}">{{ $bills->provider->providername }}</option>  
                 </select></td>   
-           <td><input type="text" value="{{  $bills->quantity  }}" class="form-control quantity" required=""></td>
-           <td><input type="text" value="{{  $bills->budget  }}" class="form-control budget"></td>
-           <td><input type="text" value="{{  $bills->amount  }}" class="form-control amount"></td>
+           <td><input type="text" value="{{  $bills->quantity  }}" name="quantity" class="form-control quantity" required=""></td>
+           <td><input type="text" value="{{  $bills->budget  }}" name="budget" class="form-control budget"></td>
+           <td><input type="text" value="{{  $bills->amount  }}" name="amount" class="form-control amount"></td>
          <td><a href="#" class="btn btn-danger remove"><i class="glyphicon glyphicon-remove"></i></a></td>
          </tr>
                          </tr>
@@ -46,7 +42,7 @@
                              <td style="border: none"></td>
                              <td>Tổng Tiền</td>
                              <td><b class="total" name="total"></b> </td>
-                             <td><input type="submit" name="" value="Thêm Mới" class="btn btn-success"></td>
+                             <td><input type="submit" value="Sửa Thông Tin" class="btn btn-info"></td>
                          </tr>
                      </tfoot>
                  </table>

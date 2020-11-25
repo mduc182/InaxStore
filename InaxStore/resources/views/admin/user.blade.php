@@ -80,7 +80,7 @@
                           <li class="menu-vertical2"><a  href="{{ route('typeindex') }}">Quản Lý Loại Sản Phẩm</a></li>
                           <li class="menu-vertical2"><a  href="{{ route('billindex') }}">Quản Lý Đơn Nhập Hàng</a></li>
                           <li class="menu-vertical2"><a  href="{{ route('providerindex') }}">Quản Lý Nhà cung cấp</a></li>
-                          
+                          <li class="menu-vertical2"><a  href="{{ route('report') }}">Trang Thống Kê</a></li>
                         </ul>
                     </div>
                     
